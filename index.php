@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="hero-img">
-        <i class="fas fa-camera fa-4x" style="color: var(--gold);"></i>
+        <img src="assets/img/foto1.jpg" alt="Fotógrafo" class="hero-foto">
     </div>
 </section>
 

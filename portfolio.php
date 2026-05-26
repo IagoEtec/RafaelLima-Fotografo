@@ -19,19 +19,19 @@
             <i class="fas fa-church"></i>
             <h3>CASAMENTOS</h3>
             <small>120+ fotos</small>
-            <a href="#">VER GALERIA →</a>
+            <a href="galeria-casamentos.php">VER GALERIA →</a>
         </div>
         <div class="portfolio-card">
             <i class="fas fa-glass-cheers"></i>
             <h3>EVENTOS</h3>
             <small>85+ fotos</small>
-            <a href="#">VER GALERIA →</a>
+            <a href="galeria-eventos.php">VER GALERIA →</a>
         </div>
         <div class="portfolio-card">
             <i class="fas fa-portrait"></i>
             <h3>ENSAIOS</h3>
             <small>65+ fotos</small>
-            <a href="#">VER GALERIA →</a>
+            <a href="galeria-ensaios.php">VER GALERIA →</a>
         </div>
     </div>
     
