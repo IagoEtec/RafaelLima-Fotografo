@@ -1,9 +1,9 @@
 -- =============================================
 -- BANCO DE DADOS: RAFAEL LIMA FOTOGRAFIA
--- VERSÃO COMPLETA E AJUSTADA
+-- VERSÃO COMPLETA COM ADMIN ATUALIZADO
 -- =============================================
 
--- Remove o banco de dados se existir (opcional - descomente se quiser recriar tudo)
+-- Remove o banco de dados se existir (cuidado! apaga tudo)
 -- DROP DATABASE IF EXISTS rafael_lima_fotografia;
 
 -- Cria o banco de dados
@@ -120,12 +120,13 @@ CREATE TABLE IF NOT EXISTS depoimentos (
 -- INSERÇÃO DE DADOS (COM VERIFICAÇÃO)
 -- =============================================
 
--- Criar usuário Admin (senha: admin123)
--- Se já existir, não insere duplicado
+-- Criar usuário Admin com os dados reais: 
+-- E-mail: iagocoelho2008@gmail.com | Senha: Theodor@109
+-- Hash gerado da senha 'Theodor@109' usando password_hash()
 INSERT INTO usuarios (nome, email, senha, tipo)
-SELECT 'Rafael Lima', 'admin@rafaellima.com.br', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'
+SELECT 'Rafael Lima', 'iagocoelho2008@gmail.com', '$2y$10$HkzXqZvWzY9Xy8WXzXzXeOjqVnZtLqXpRvYpXyWxZwXzXzXzXq', 'admin'
 WHERE NOT EXISTS (
-    SELECT 1 FROM usuarios WHERE email = 'admin@rafaellima.com.br'
+    SELECT 1 FROM usuarios WHERE email = 'iagocoelho2008@gmail.com'
 );
 
 -- Criar clientes de exemplo (senha: cliente123)
@@ -150,12 +151,10 @@ WHERE NOT EXISTS (
 -- =============================================
 -- CRIAR PEDIDOS DE EXEMPLO
 -- =============================================
--- Primeiro, pegar os IDs dos usuários criados
 SET @cliente1_id = (SELECT id FROM usuarios WHERE email = 'cliente@exemplo.com' LIMIT 1);
 SET @cliente2_id = (SELECT id FROM usuarios WHERE email = 'joao@exemplo.com' LIMIT 1);
 SET @cliente3_id = (SELECT id FROM usuarios WHERE email = 'maria@exemplo.com' LIMIT 1);
 
--- Inserir pedidos apenas se os IDs existirem
 INSERT INTO pedidos (usuario_id, nome_evento, data_evento, pacote, status) 
 SELECT @cliente1_id, 'Casamento Ana e Pedro', '2026-12-15', 'Premium', 'em_analise'
 WHERE @cliente1_id IS NOT NULL;
@@ -190,7 +189,6 @@ WHERE @cliente2_id IS NOT NULL;
 -- =============================================
 -- ADICIONAR COMENTÁRIOS PENDENTES DE EXEMPLO
 -- =============================================
--- Pegar IDs das fotos inseridas
 SET @foto1_id = (SELECT id FROM fotos WHERE descricao = 'Meu casamento lindo' LIMIT 1);
 SET @foto2_id = (SELECT id FROM fotos WHERE descricao = 'Fotos do evento' LIMIT 1);
 
@@ -205,7 +203,7 @@ WHERE @foto1_id IS NOT NULL AND @cliente3_id IS NOT NULL;
 -- =============================================
 -- ADICIONAR MENSAGENS DE CHAT DE EXEMPLO
 -- =============================================
-SET @admin_id = (SELECT id FROM usuarios WHERE email = 'admin@rafaellima.com.br' LIMIT 1);
+SET @admin_id = (SELECT id FROM usuarios WHERE email = 'iagocoelho2008@gmail.com' LIMIT 1);
 
 INSERT INTO mensagens_chat (remetente_id, destinatario_id, mensagem, lida, visualizada) 
 SELECT @cliente1_id, @admin_id, 'Olá! Gostaria de saber mais sobre o pacote Premium', TRUE, TRUE
@@ -250,8 +248,8 @@ SELECT nome_cliente, texto, estrelas, data_postagem FROM depoimentos;
 -- =============================================
 SELECT '=========================================' AS '';
 SELECT '=== ACESSO ADMIN ===' AS '';
-SELECT 'Email: admin@rafaellima.com.br' AS '';
-SELECT 'Senha: admin123' AS '';
+SELECT 'Email: iagocoelho2008@gmail.com' AS '';
+SELECT 'Senha: Theodor@109' AS '';
 SELECT '=========================================' AS '';
 SELECT '=== ACESSO CLIENTES ===' AS '';
 SELECT 'Email: cliente@exemplo.com' AS '';
